@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ja" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <title>コダックメーカー</title>
+  <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <p><img src="./assets/Psyduck-logo.png" width="300" height="80"></p>
+
+    <p>
+      <table>
+      <tr>
+        <td><input type="image" src="./assets/Psyduck1.png" name="button1" alt="通常" width="150" height="110"><p>通常</td>
+        <td><input type="image" src="./assets/Psyduck2.png" name="button2" alt="頭をかかえる(左)" width="150" height="110"><p>頭をかかえる(左)</td>
+        <td><input type="image" src="./assets/Psyduck3.png" name="button3" alt="頭をかかえる(右)" width="150" height="110"><p>頭をかかえる(右)</td>
+        <td><input type="image" src="./assets/Psyduck4.png" name="button4" alt="目をつむる" width="150" height="110"><p>目をつむる</td>
+        <td><input type="image" src="./assets/Psyduck5.png" name="button5" alt="諦める" width="150" height="110"><p>諦める</td>
+        <td><input type="image" src="./assets/Psyduck6.png" name="button6" alt="両手を広げる" width="150" height="110"><p>両手を広げる</td>
+        <td><input type="image" src="./assets/Psyduck7.png" name="button7" alt="覚醒" width="150" height="110"><p>覚醒</td>
+      </tr>
+    </table>
+    </p>
+
+    <div id="selecedImg">
+
+    </div>
+
+    <input type="text" name="text" size="30" maxlength="9">
+    <input type="submit" name="submit" value="生成" onclick="submit();">
+    <script>
+    var selected = "";
+    function submit(){
+      var elements = document.getElementsByName("text");
+      var text = elements[0].value;
+      var img_num = selected.slice(selected.length-1);
+      var imageName = "Psyduck" + img_num + ".png"
+      location.href="result.html?text="+escape(text)+"&image="+escape(imageName);
+
+    }
+    onload = function() {
+      var elements = document.getElementsByName("button1");
+      elements[0].focus();
+
+      var selecedImgName = document.getElementById("selecedImg");
+      selecedImgName.innerHTML = "「" + elements[0].alt + "」を選択中";
+    };
+    $(function(){
+    $("input").focus(function(){
+        var selectedButton = document.activeElement;
+        if(selectedButton.name != "submit" && selectedButton.name != "text"){
+          selected = selectedButton.name;
+
+          var selecedImgName = document.getElementById("selecedImg");
+          selecedImgName.innerHTML = "「" + selectedButton.alt + "」を選択中";
+        }
+      }).blur(function(){
+      });
+    });
+    </script>
+  </body>
+</html>

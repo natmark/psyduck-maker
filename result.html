@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ja" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <title>コダックメーカー</title>
+  <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+<!--
+  <script type="text/javascript" src="lib/script.js"></script>
+  <script type="text/javascript" src="lib/marked.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/slidemenu.css">
+-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <p><img src="./assets/Psyduck-logo.png" width="300" height="80"></p>
+    <p><canvas id="psyduck-canvas" width="300" height="220"></canvas></p>
+    <form>
+      <p><input type="button" value="画像に変換" onclick="chgImg()"></p>
+    </form>
+
+    <script>
+    onload = function() {
+      draw();
+    };
+    function draw() {
+      /* アドレスの「?」以降の引数(パラメータ)を取得 */
+      var pram=location.search;
+      /* 引数がない時は処理しない */
+      if (!pram) return false;
+      /* 先頭の?をカット */
+      pram=pram.substring(1);
+      /* 「&」で引数を分割して配列に */
+      var pair=pram.split("&");
+      var i=temp="";
+      var key=new Array();
+      for (i=0; i < pair.length; i++) {
+        /* 配列の値を「=」で分割 */
+        temp=pair[i].split("=");
+        keyName=temp[0];
+        keyValue=temp[1];
+        /* キーと値の連想配列を生成 */
+        key[keyName]=keyValue;
+      }
+      var text=image="";
+      /* 名前 */
+      if (!key["text"] || key["text"]==""){
+        text="";
+      }else{
+        /* コード変換 */
+        text=unescape(key["text"]);
+      }
+      if(!key["image"] || key["image"]=="") {
+        image="";
+      }else{
+        image=unescape(key["image"]);
+      }
+
+      /* canvas要素のノードオブジェクト */
+      var canvas = document.getElementById('psyduck-canvas');
+      /* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
+      if ( ! canvas || ! canvas.getContext ) {
+        return false;
+      }
+      /* 2Dコンテキスト */
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      /* Imageオブジェクトを生成 */
+      var img = new Image();
+      img.src = "./assets/" + image;
+      /* 画像が読み込まれるのを待ってから処理を続行 */
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0,300,220);
+        //ctx2.fillText('fillText(text,x,y[,maxWidth])',15,55,520);
+        //ctx.font= 'normal 82px Century Gothic,"Hiragino Kaku Gothic ProN", ヒラギノ角ゴ ProN W3"';
+        ctx.font= 'normal 22px "HiraginoSans-W0"';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = "#48656c";
+        ctx.fillText(text,150,202);
+
+      }
+    }
+    function chgImg(){
+      try {
+        /* canvas要素のノードオブジェクト */
+        var canvas = document.getElementById('psyduck-canvas');
+        var img = new Image()
+        img.src = canvas.toDataURL();
+        img.onload = function() {
+          document.getElementById("newImg").src = img_png_src;
+        }
+      } catch(e) {
+        document.getElementById("newImg").alt = "未対応";
+      }
+    }
+    </script>
+    <p><div><img id="newImg"></div></p>
+  </body>
+</html>

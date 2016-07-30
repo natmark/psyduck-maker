@@ -1,0 +1,23 @@
+{
+  "name": "Psyduck-maker",
+  "version": "0.0.0",
+  "description": "Psyduck-kusokora-maker",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/natmark/psyduck-maker"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natmark/psyduck-maker/issues"
+  },
+  "homepage": "https://github.com/natmark/psyduck-maker",
+  "devDependencies": {
+    "fs": "0.0.2",
+    "express": "~4.14.0"
+  }
+}
