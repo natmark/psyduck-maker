@@ -51,38 +51,4 @@ app.get('/Psyduck-logo.png', function (req, res) {
 });
 
 
-app.listen(3000);
-console.log('Server running at localhost:3000');
-/*
-function doRequest(request, response) {
-    switch(request.url) {
-    case '/':
-        fs.readFile('./test.html', 'UTF-8',
-            function (err, data) {
-                response.writeHead(200, {'Content-Type': 'text/html'});
-                response.write(data);
-                response.end();
-            }
-        );
-        break;
-    case '/style.css':
-        fs.readFile('./style.css', 'UTF-8',
-            function (err, data) {
-                response.writeHead(200, {'Content-Type': 'text/css'});
-                response.write(data);
-                response.end();
-            }
-        );
-        break;
-    case '/sample.png':
-        fs.readFile('./sample.png', 'binary',
-            function (err, data) {
-                response.writeHead(200, {'Content-Type': 'image/png'});
-                response.write(data, 'binary');
-                response.end();
-            }
-        );
-        break;
-    }
-};
-*/
+app.listen(process.env.PORT || 3000);
