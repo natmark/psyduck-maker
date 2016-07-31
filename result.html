@@ -17,11 +17,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <p><img src="./assets/Psyduck-logo.png" width="300" height="80"></p>
-    <p><canvas id="psyduck-canvas" width="300" height="220"></canvas></p>
+    <p><input type="button" value="戻る" onclick="location.href='/index.html'"></p>
+
+    <p><img src="Psyduck-logo.png" width="300" height="80"></p>
+    <p><canvas id="psyduck-canvas" width="600" height="440"></canvas></p>
     <form>
       <p><input type="button" value="画像に変換" onclick="chgImg()"></p>
     </form>
+    <a href="https://twitter.com/share" class="twitter-share-button"
+    data-text="コダックメーカー"
+    data-lang="ja"
+    data-hashtags="コダックメーカー">ツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <p><div><img id="newImg"></div></p>
+
 
     <script>
     onload = function() {
@@ -68,19 +78,18 @@
       }
       /* 2Dコンテキスト */
       var ctx = canvas.getContext('2d');
-      var img = new Image();
       /* Imageオブジェクトを生成 */
       var img = new Image();
-      img.src = "./assets/" + image;
+      img.src = image;
       /* 画像が読み込まれるのを待ってから処理を続行 */
       img.onload = function() {
-        ctx.drawImage(img, 0, 0,300,220);
+        ctx.drawImage(img, 0, 0,600,440);
         //ctx2.fillText('fillText(text,x,y[,maxWidth])',15,55,520);
         //ctx.font= 'normal 82px Century Gothic,"Hiragino Kaku Gothic ProN", ヒラギノ角ゴ ProN W3"';
-        ctx.font= 'normal 22px "HiraginoSans-W0"';
+        ctx.font= 'normal 44px "HiraginoSans-W0"';
         ctx.textAlign = 'center';
         ctx.fillStyle = "#48656c";
-        ctx.fillText(text,150,202);
+        ctx.fillText(text,300,404);
 
       }
     }
@@ -91,13 +100,12 @@
         var img = new Image()
         img.src = canvas.toDataURL();
         img.onload = function() {
-          document.getElementById("newImg").src = img_png_src;
+          document.getElementById("newImg").src = img.src;
         }
       } catch(e) {
         document.getElementById("newImg").alt = "未対応";
       }
     }
     </script>
-    <p><div><img id="newImg"></div></p>
   </body>
 </html>
