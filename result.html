@@ -18,20 +18,14 @@
   </head>
   <body>
     <p><input type="button" value="戻る" onclick="location.href='/index.html'"></p>
-
     <p><img src="Psyduck-logo.png" width="300" height="80"></p>
-    <p><canvas id="psyduck-canvas" width="600" height="440"></canvas></p>
-    <form>
-      <p><input type="button" value="画像に変換" onclick="chgImg()"></p>
-    </form>
-    <a href="https://twitter.com/share" class="twitter-share-button"
-    data-text="コダックメーカー"
-    data-lang="ja"
-    data-hashtags="コダックメーカー">ツイート</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
+    <!--隠してある-->
+    <div hidden><p><canvas id="psyduck-canvas" width="600" height="440"></canvas></p></div>
     <p><div><img id="newImg"></div></p>
-
+    <!--
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://psyduck-maker.herokuapp.com/" data-text="コダックメーカーを使っています。" data-hashtags="コダックメーカー">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  -->
 
     <script>
     onload = function() {
@@ -90,7 +84,7 @@
         ctx.textAlign = 'center';
         ctx.fillStyle = "#48656c";
         ctx.fillText(text,300,404);
-
+        chgImg();
       }
     }
     function chgImg(){
