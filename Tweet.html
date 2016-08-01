@@ -1,0 +1,29 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ja" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title>コダックメーカー</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+  <body>
+  <form method="post" id="tweet" name="tweet">
+    <input type="text", name="text">
+    <input type = "submit" value = "ツイート"></button>
+  </form>
+  <script>
+  // client side script
+$('#tweet').submit(function (e) {
+  var text = e.target.text.value;
+  $.ajax({
+    url: '/post'
+  , type: 'POST'
+  , data: {text: text}
+  });
+  return false;
+});
+  </script>
+  </body>
+<html>

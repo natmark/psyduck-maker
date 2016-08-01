@@ -18,10 +18,13 @@
   "homepage": "https://github.com/natmark/psyduck-maker",
   "devDependencies": {
     "fs": "0.0.2",
-    "express": "~4.14.0"
+    "express": "~4.14.0",
+    "express-session": "~1.14.0",
+    "oauth": "0.9.8",
+    "querystring": "~0.2.0"
   },
-  "dependencies":{
+  "dependencies": {
     "fs": "0.0.2",
-    "express": "~4.14.0"    
+    "express": "~4.14.0"
   }
 }
