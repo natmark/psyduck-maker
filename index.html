@@ -8,27 +8,37 @@
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="icon" href="assets/favicon/favicon.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <title>コダックメーカー</title>
   <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <p><img src="assets/Psyduck-logo.png" width="300" height="80"></p>
-    <p>
-      <table>
-      <tr>
-        <td><input type="image" src="assets/Psyduck1.png" name="button1" alt="通常" width="150" height="110" onCLick="click_Btn('button1','通常')"><p>通常</td>
-        <td><input type="image" src="assets/Psyduck2.png" name="button2" alt="頭をかかえる(左)" width="150" height="110" onCLick="click_Btn('button2','頭をかかえる(左)')"><p>頭をかかえる(左)</td>
-        <td><input type="image" src="assets/Psyduck3.png" name="button3" alt="頭をかかえる(右)" width="150" height="110" onCLick="click_Btn('button3','頭をかかえる(右)')"><p>頭をかかえる(右)</td>
-        <td><input type="image" src="assets/Psyduck4.png" name="button4" alt="目をつむる" width="150" height="110" onCLick="click_Btn('button4','目をつむる')"><p>目をつむる</td>
-      </tr><tr>
-        <td><input type="image" src="assets/Psyduck5.png" name="button5" alt="諦める" width="150" height="110" onCLick="click_Btn('button5','諦める')"><p>諦める</td>
-        <td><input type="image" src="assets/Psyduck6.png" name="button6" alt="両手を広げる" width="150" height="110" onCLick="click_Btn('button6','両手を広げる')"><p>両手を広げる</td>
-        <td><input type="image" src="assets/Psyduck7.png" name="button7" alt="覚醒" width="150" height="110" onCLick="click_Btn('button7','覚醒')"><p>覚醒</td>
-      </tr>
-      </table>
-    </p>
+    <div id="toolBar">
+      <img src="assets/Psyduck-logo.png" width="300" height="40">
+      <div id="animate-image">
+        <img src="assets/Psyduck-animation.gif">
+      </div>
+    </div>
+    <div id="imageBox">
+      <!--<p><img src="assets/Psyduck-logo.png" width="300" height="80"></p>-->
+      <p>
+        <table>
+        <tr>
+          <td><input type="image" src="assets/Psyduck1.png" name="button1" alt="通常" width="150" height="110" onCLick="click_Btn('button1','通常')"><p>通常</td>
+          <td><input type="image" src="assets/Psyduck2.png" name="button2" alt="頭をかかえる(左)" width="150" height="110" onCLick="click_Btn('button2','頭をかかえる(左)')"><p>頭をかかえる(左)</td>
+          <td><input type="image" src="assets/Psyduck3.png" name="button3" alt="頭をかかえる(右)" width="150" height="110" onCLick="click_Btn('button3','頭をかかえる(右)')"><p>頭をかかえる(右)</td>
+          <td><input type="image" src="assets/Psyduck4.png" name="button4" alt="目をつむる" width="150" height="110" onCLick="click_Btn('button4','目をつむる')"><p>目をつむる</td>
+        </tr><tr>
+          <td><input type="image" src="assets/Psyduck5.png" name="button5" alt="諦める" width="150" height="110" onCLick="click_Btn('button5','諦める')"><p>諦める</td>
+          <td><input type="image" src="assets/Psyduck6.png" name="button6" alt="両手を広げる" width="150" height="110" onCLick="click_Btn('button6','両手を広げる')"><p>両手を広げる</td>
+          <td><input type="image" src="assets/Psyduck7.png" name="button7" alt="覚醒" width="150" height="110" onCLick="click_Btn('button7','覚醒')"><p>覚醒</td>
+        </tr>
+        </table>
+      </p>
+    </div>
+    <br>
     <p><canvas id="psyduck-canvas" width="300" height="220"></canvas></p>
     <input type="text" name="text" size="30" maxlength="9" onInput="alertValue(this)">
     <input type="submit" name="submit" value="画像を保存" onclick="submit();">

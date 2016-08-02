@@ -47,9 +47,11 @@ app.get('/result.html?*', function (req, res) {
 /*サーバリソースをクライアント側で利用*/
 app.get('/assets/*', function (req, res){
   console.log(req.url);
+  var contentType = '';
+
   fs.readFile('.' + req.url, 'binary',
       function (err, data) {
-          res.writeHead(200, {'Content-Type': 'image/png'});
+          res.writeHead(200, {'Content-Type':getContentType(getExtention(req.url))});
           res.write(data, 'binary');
           res.end();
       }
@@ -148,3 +150,17 @@ app.post('/post', function (req, res) {
 
 app.listen(app.get('port'));
 console.log('running on ' + app.get('port'));
+
+function getContentType(expanded){
+  if(expanded == 'png') return 'image/png'
+  if(expanded == 'jpeg') return 'image/jpeg'
+  if(expanded == 'gif') return 'image/gif'
+  if(expanded == 'ico') return 'image/x-icon'
+  if(expanded == 'css') return 'text/css'
+}
+function getExtention(url) {
+    var ext = url.replace(/\?.*$/, "")          // 拡張子以降のパラメータを除去
+                 .replace(/#.*$/, "")           // 拡張子以降のパラメータを除去
+                 .replace(/^.*\.(.+)$/, "$1");  // 拡張子部分（最後の.以降）をキャプチャして置換
+    return ext;
+}
