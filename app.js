@@ -9,7 +9,7 @@ var url = require('url');
 
 app.set('port', process.env.PORT || 3000);
 
-var session = require('express-session');
+//session setting
 app.use(session({
      secret : 'hogehoge',
      resave : true,
@@ -44,9 +44,10 @@ app.get('/result.html?*', function (req, res) {
       }
   );
 });
-app.get('/Psyduck[1-9]+.png', function (req, res) {
+/*サーバリソースをクライアント側で利用*/
+app.get('/assets/*', function (req, res){
   console.log(req.url);
-  fs.readFile('./assets' + req.url, 'binary',
+  fs.readFile('.' + req.url, 'binary',
       function (err, data) {
           res.writeHead(200, {'Content-Type': 'image/png'});
           res.write(data, 'binary');
@@ -54,15 +55,7 @@ app.get('/Psyduck[1-9]+.png', function (req, res) {
       }
   );
 });
-app.get('/Psyduck-logo.png', function (req, res) {
-  fs.readFile('./assets/Psyduck-logo.png', 'binary',
-      function (err, data) {
-          res.writeHead(200, {'Content-Type': 'image/png'});
-          res.write(data, 'binary');
-          res.end();
-      }
-  );
-});
+
 
 var oa = new OAuth (
   "https://api.twitter.com/oauth/request_token",
