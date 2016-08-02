@@ -22,6 +22,72 @@
     <!--隠してある-->
     <div hidden><p><canvas id="psyduck-canvas" width="600" height="440"></canvas></p></div>
     <p><div><img id="newImg"></div></p>
+    <input type="text", name="text" value="#コダックメーカー">
+    <input type ="submit" name="submit" value ="ツイート" onclick="submit();">
+    <script>
+    function submit(){
+      var tweet = document.getElementsByName('text')[0].value;
+      var b64 = document.getElementById('newImg').src.toString();
+
+      /* アドレスの「?」以降の引数(パラメータ)を取得 */
+      var pram=location.search;
+      /* 引数がない時は処理しない */
+      if (!pram) return false;
+      /* 先頭の?をカット */
+      pram=pram.substring(1);
+      /* 「&」で引数を分割して配列に */
+      var pair=pram.split("&");
+      var i=temp="";
+      var key=new Array();
+      for (i=0; i < pair.length; i++) {
+        /* 配列の値を「=」で分割 */
+        temp=pair[i].split("=");
+        keyName=temp[0];
+        keyValue=temp[1];
+        /* キーと値の連想配列を生成 */
+        key[keyName]=keyValue;
+      }
+      var text=image="";
+      /* 名前 */
+      if (!key["text"] || key["text"]==""){
+        text="";
+      }else{
+        /* コード変換 */
+        text=unescape(key["text"]);
+      }
+      if(!key["image"] || key["image"]=="") {
+        image="";
+      }else{
+        image=unescape(key["image"]);
+      }
+
+      //location.href='auth/twitter?tweet='+escape(tweet)+'&binary='+escape(b64)+'&text='+escape(text)+'&image='+escape(image);
+      postJump('http://127.0.0.1:3000/post',['tweet','binary','imgSrc','text'],[tweet,b64,image,text]);
+    }
+    function postJump(_url, _keys, _vals){
+      var html = '<form method="post" action="'+_url+'" id="postjump" style="display: none;">';
+      for(var cnt=0;cnt<_keys.length;cnt++){
+          html += '<input type="hidden" name="'+_keys[cnt]+'" value="'+_vals[cnt]+'" >';
+      }
+      html += '</form>';
+      $("body").append(html);
+      $('#postjump').submit();
+      $('#postjump').remove();
+    }
+    // client side script
+    //
+    /*
+  $('#tweet').submit(function (e) {
+    var text = e.target.text.value;
+    $.ajax({
+      url: '/auth/twitter'
+    , type: 'GET'
+    , data: {text: text}
+    });
+    return false;
+  });
+  */
+    </script>
     <!--
     <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://psyduck-maker.herokuapp.com/" data-text="コダックメーカーを使っています。" data-hashtags="コダックメーカー">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
