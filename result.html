@@ -132,7 +132,7 @@
       var text = data['text'];
 
       //location.href='auth/twitter?tweet='+escape(tweet)+'&binary='+escape(b64)+'&text='+escape(text)+'&image='+escape(image);
-      postJump('http://127.0.0.1:3000/post',['tweet','binary','imgSrc','text'],[tweet,b64,image,text]);
+      postJump('https://psyduck-maker.herokuapp.com/post',['tweet','binary','imgSrc','text'],[tweet,b64,image,text]);
     }
     function postJump(_url, _keys, _vals){
       var html = '<form method="post" action="'+_url+'" id="postjump" style="display: none;">';
