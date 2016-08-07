@@ -65,7 +65,7 @@ var oa = new OAuth (
   "IiDu8ZglXLmmsZPUDIvknPXSk", //twitter appで発行されたConsumer keyを入力。
   "oEUb229L7F50ZTrNeMh4yVnrw7tbbPPSF8Tqlyl075UgRS3MBY", //twitter appで発行されたConsumer secretを入力。
   "1.0",
-  "http://127.0.0.1:3000/auth/twitter/callback",
+  "https://psyduck-maker.herokuapp.com/auth/twitter/callback",
   "HMAC-SHA1"
 );
 //auth/twitterにアクセスするとTwitterアプリケーション認証画面に遷移します。
@@ -124,7 +124,7 @@ app.get('/auth/twitter/callback', function(req, res, next){
         console.log(error);
         res.send("yeah something broke.");
       } else {
-        res.redirect('http://127.0.0.1:3000/tweet');
+        res.redirect('https://psyduck-maker.herokuapp.com/tweet');
       }
     });
   } else {
@@ -144,7 +144,7 @@ app.post('/post', function (req, res) {
        req.session.twData.imgData = unescape(POST.binary);
        req.session.twData.imgName = unescape(POST.imgSrc);
        req.session.twData.imgText = unescape(POST.text);
-       res.redirect('http://127.0.0.1:3000/auth/twitter/')
+       res.redirect('https://psyduck-maker.herokuapp.com/auth/twitter/')
    });
 });
 
