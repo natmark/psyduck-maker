@@ -39,14 +39,24 @@
       </p>
     </div>
     <br>
-    <p><canvas id="psyduck-canvas" width="300" height="220"></canvas></p>
-    <input type="text" name="text" size="30" maxlength="9" onInput="alertValue(this)">
-    <input type="submit" name="submit" value="画像を保存" onclick="submit();">
 
+    <div id="generateBox">
+      <div id="generateImage">
+        <p><canvas id="psyduck-canvas" width="300" height="220"></canvas></p>
+        <p>好きな文字を９文字まで入力できます。</p>
+        <p><input type="text" name="text" id="textField" size="30" maxlength="9" onInput="alertValue(this)"></p>
+        <p><input type="submit" name="submit" id="submitBtn" value="画像を保存" onclick="submit();"></p>
+      </div>
+    </div>
+
+    <div id="footer">
+      <p>Copyright(c) 2016 n_atmark all right reserved.</p>
+    </div>
     <script>
     var selected = "";
     function click_Btn(str,alt){
       selected = str;
+      goBottom("psyduck-canvas")
       draw();
     }
     function submit(){
@@ -90,6 +100,10 @@
     }
     function alertValue($this) {
       draw();
+    }
+    function goBottom(targetId) {
+      var target = $("#" + targetId);
+      $(window).scrollTop(target.offset().top);
     }
     </script>
   </body>
